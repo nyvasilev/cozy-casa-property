@@ -1,52 +1,49 @@
-"use client";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { FaGoogle } from "react-icons/fa";
-import { paths, devices } from "@/enums";
-import logo from "@/images/logo-white.png";
-import profileDefault from "@/images/profile.png";
+'use client'
+import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FaGoogle } from 'react-icons/fa'
+import { paths, devices } from '@/enums'
+import logo from '@/images/logo-white.png'
+import profileDefault from '@/images/profile.png'
 
-const navbarDesktopDefaultClass =
-  "text-white hover:bg-gray-900 rounded-md px-3 py-2";
+const navbarDesktopDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
 const navBarMobileDefaultClass =
-  "text-white hover:bg-gray-900 rounded-md px-3 py-2 block text-base font-medium";
+  'text-white hover:bg-gray-900 rounded-md px-3 py-2 block text-base font-medium'
 
 const classes = (pathname, device, path) => {
   const styles = {
     [devices.desktop]: {
-      [paths.home]: `${
-        pathname === "/" && "bg-black"
-      } ${navbarDesktopDefaultClass} `,
+      [paths.home]: `${pathname === '/' && 'bg-black'} ${navbarDesktopDefaultClass} `,
       [paths.properties]: `${
-        pathname === "/properties" && "bg-black"
+        pathname === '/properties' && 'bg-black'
       } ${navbarDesktopDefaultClass}`,
       [paths.addProperty]: `${
-        pathname === "/properties/add" && "bg-black"
+        pathname === '/properties/add' && 'bg-black'
       } ${navbarDesktopDefaultClass}`,
     },
     [devices.mobile]: {
-      [paths.home]: `${
-        pathname === "/" && "bg-black"
-      } ${navBarMobileDefaultClass} `,
-      [paths.properties]: `${
-        pathname === "/properties" && "bg-black"
-      } ${navBarMobileDefaultClass}`,
+      [paths.home]: `${pathname === '/' && 'bg-black'} ${navBarMobileDefaultClass} `,
+      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navBarMobileDefaultClass}`,
       [paths.addProperty]: `${
-        pathname === "/properties/add" && "bg-black"
+        pathname === '/properties/add' && 'bg-black'
       } ${navBarMobileDefaultClass}`,
     },
-  };
+  }
 
-  return styles[device][path];
-};
+  return styles[device][path]
+}
+
+console.log('test')
 
 const Navbar = () => {
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isLogInOpen, setIsLogInOpen] = useState(false);
-  const pathname = usePathname();
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [isLogInOpen, setIsLogInOpen] = useState(false)
+  const pathname = usePathname()
+
+  console.log(pathname)
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -60,8 +57,7 @@ const Navbar = () => {
               className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
-              onClick={() => setIsMobileOpen((prev) => !prev)}
-            >
+              onClick={() => setIsMobileOpen((prev) => !prev)}>
               <span className="absolute -inset-0.5"></span>
               <span className="sr-only">Open main menu</span>
               <svg
@@ -70,8 +66,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                aria-hidden="true"
-              >
+                aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -84,44 +79,25 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
-              <Image
-                className="h-10 w-auto"
-                src={logo}
-                alt="CozyCasaProperty"
-              />
+              <Image className="h-10 w-auto" src={logo} alt="CozyCasaProperty" />
 
-              <span className="hidden md:block text-white text-2xl font-bold ml-2">
-                Cozy Casa
-              </span>
+              <span className="hidden md:block text-white text-2xl font-bold ml-2">Cozy Casa</span>
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-2">
-                <Link
-                  href="/"
-                  className={classes(pathname, devices.desktop, paths.home)}
-                >
+                <Link href="/" className={classes(pathname, devices.desktop, paths.home)}>
                   Home
                 </Link>
                 <Link
                   href="/properties"
-                  className={classes(
-                    pathname,
-                    devices.desktop,
-                    paths.properties
-                  )}
-                >
+                  className={classes(pathname, devices.desktop, paths.properties)}>
                   Properties
                 </Link>
                 {isLogInOpen && (
                   <Link
                     href="/properties/add"
-                    className={classes(
-                      pathname,
-                      devices.desktop,
-                      paths.addProperty
-                    )}
-                  >
+                    className={classes(pathname, devices.desktop, paths.addProperty)}>
                     Add Property
                   </Link>
                 )}
@@ -146,8 +122,7 @@ const Navbar = () => {
             <Link href="messages" className="relative group">
               <button
                 type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
+                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">View notifications</span>
                 <svg
@@ -156,8 +131,7 @@ const Navbar = () => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -166,8 +140,7 @@ const Navbar = () => {
                 </svg>
               </button>
               <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                2
-                {/* <!-- Replace with the actual number of notifications --> */}
+                2{/* <!-- Replace with the actual number of notifications --> */}
               </span>
             </Link>
             {/* <!-- Profile dropdown button --> */}
@@ -179,15 +152,10 @@ const Navbar = () => {
                   id="user-menu-button"
                   aria-expanded="false"
                   aria-haspopup="true"
-                  onClick={() => setIsProfileOpen((prev) => !prev)}
-                >
+                  onClick={() => setIsProfileOpen((prev) => !prev)}>
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <Image
-                    className="h-8 w-8 rounded-full"
-                    src={profileDefault}
-                    alt=""
-                  />
+                  <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
                 </button>
               </div>
 
@@ -199,15 +167,13 @@ const Navbar = () => {
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
-                  tabIndex="-1"
-                >
+                  tabIndex="-1">
                   <Link
                     href="/profile"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabIndex="-1"
-                    id="user-menu-item-0"
-                  >
+                    id="user-menu-item-0">
                     Your Profile
                   </Link>
                   <Link
@@ -215,16 +181,14 @@ const Navbar = () => {
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabIndex="-1"
-                    id="user-menu-item-2"
-                  >
+                    id="user-menu-item-2">
                     Saved Properties
                   </Link>
                   <button
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                     tabIndex="-1"
-                    id="user-menu-item-2"
-                  >
+                    id="user-menu-item-2">
                     Sign Out
                   </button>
                 </div>
@@ -238,23 +202,18 @@ const Navbar = () => {
       {isMobileOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
-            <Link
-              href="/"
-              className={classes(pathname, devices.mobile, paths.home)}
-            >
+            <Link href="/" className={classes(pathname, devices.mobile, paths.home)}>
               Home
             </Link>
             <Link
               href="/properties"
-              className={classes(pathname, devices.mobile, paths.properties)}
-            >
+              className={classes(pathname, devices.mobile, paths.properties)}>
               Properties
             </Link>
             {isLogInOpen && (
               <Link
                 href="/properties/add"
-                className={classes(pathname, devices.mobile, paths.addProperty)}
-              >
+                className={classes(pathname, devices.mobile, paths.addProperty)}>
                 Add Property
               </Link>
             )}
@@ -267,6 +226,6 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar
