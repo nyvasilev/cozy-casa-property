@@ -8,42 +8,31 @@ import { paths, devices } from '@/enums'
 import logo from '@/images/logo-white.png'
 import profileDefault from '@/images/profile.png'
 
-const navbarDesktopDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
-const navBarMobileDefaultClass =
-  'text-white hover:bg-gray-900 rounded-md px-3 py-2 block text-base font-medium'
+const navbarDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
+const navBarMobileClass = `${navbarDefaultClass} block text-base font-medium`
 
 const classes = (pathname, device, path) => {
   const styles = {
     [devices.desktop]: {
-      [paths.home]: `${pathname === '/' && 'bg-black'} ${navbarDesktopDefaultClass} `,
-      [paths.properties]: `${
-        pathname === '/properties' && 'bg-black'
-      } ${navbarDesktopDefaultClass}`,
-      [paths.addProperty]: `${
-        pathname === '/properties/add' && 'bg-black'
-      } ${navbarDesktopDefaultClass}`,
+      [paths.home]: `${pathname === '/' && 'bg-black'} ${navbarDefaultClass} `,
+      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navbarDefaultClass}`,
+      [paths.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navbarDefaultClass}`,
     },
     [devices.mobile]: {
-      [paths.home]: `${pathname === '/' && 'bg-black'} ${navBarMobileDefaultClass} `,
-      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navBarMobileDefaultClass}`,
-      [paths.addProperty]: `${
-        pathname === '/properties/add' && 'bg-black'
-      } ${navBarMobileDefaultClass}`,
+      [paths.home]: `${pathname === '/' && 'bg-black'} ${navBarMobileClass} `,
+      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navBarMobileClass}`,
+      [paths.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navBarMobileClass}`,
     },
   }
 
   return styles[device][path]
 }
 
-console.log('test')
-
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const pathname = usePathname()
-
-  console.log(pathname)
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
