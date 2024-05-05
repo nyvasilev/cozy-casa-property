@@ -4,9 +4,8 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaGoogle } from 'react-icons/fa'
-import { paths, devices } from '@/enums'
-import logo from '@/images/logo-white.png'
-import profileDefault from '@/images/profile.png'
+import { devices, images } from 'common/enums'
+import { routes } from 'common/routes'
 
 const navbarDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
 const navBarMobileClass = `${navbarDefaultClass} block text-base font-medium`
@@ -14,14 +13,14 @@ const navBarMobileClass = `${navbarDefaultClass} block text-base font-medium`
 const classes = (pathname, device, path) => {
   const styles = {
     [devices.desktop]: {
-      [paths.home]: `${pathname === '/' && 'bg-black'} ${navbarDefaultClass} `,
-      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navbarDefaultClass}`,
-      [paths.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navbarDefaultClass}`,
+      [routes.home]: `${pathname === '/' && 'bg-black'} ${navbarDefaultClass} `,
+      [routes.properties]: `${pathname === '/properties' && 'bg-black'} ${navbarDefaultClass}`,
+      [routes.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navbarDefaultClass}`,
     },
     [devices.mobile]: {
-      [paths.home]: `${pathname === '/' && 'bg-black'} ${navBarMobileClass} `,
-      [paths.properties]: `${pathname === '/properties' && 'bg-black'} ${navBarMobileClass}`,
-      [paths.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navBarMobileClass}`,
+      [routes.home]: `${pathname === '/' && 'bg-black'} ${navBarMobileClass} `,
+      [routes.properties]: `${pathname === '/properties' && 'bg-black'} ${navBarMobileClass}`,
+      [routes.addProperty]: `${pathname === '/properties/add' && 'bg-black'} ${navBarMobileClass}`,
     },
   }
 
@@ -68,25 +67,31 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
-              <Image className="h-10 w-auto" src={logo} alt="CozyCasaProperty" />
+              <Image
+                className="h-10 w-auto"
+                src={images.logo}
+                width={100}
+                height={100}
+                alt="CozyCasaProperty"
+              />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2">Cozy Casa</span>
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-2">
-                <Link href="/" className={classes(pathname, devices.desktop, paths.home)}>
+                <Link href="/" className={classes(pathname, devices.desktop, routes.home)}>
                   Home
                 </Link>
                 <Link
                   href="/properties"
-                  className={classes(pathname, devices.desktop, paths.properties)}>
+                  className={classes(pathname, devices.desktop, routes.properties)}>
                   Properties
                 </Link>
                 {isLogInOpen && (
                   <Link
                     href="/properties/add"
-                    className={classes(pathname, devices.desktop, paths.addProperty)}>
+                    className={classes(pathname, devices.desktop, routes.addProperty)}>
                     Add Property
                   </Link>
                 )}
@@ -144,7 +149,13 @@ const Navbar = () => {
                   onClick={() => setIsProfileOpen((prev) => !prev)}>
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
+                  <Image
+                    className="h-8 w-8 rounded-full"
+                    src={images.profileDefault}
+                    width={100}
+                    height={100}
+                    alt=""
+                  />
                 </button>
               </div>
 
@@ -191,18 +202,18 @@ const Navbar = () => {
       {isMobileOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
-            <Link href="/" className={classes(pathname, devices.mobile, paths.home)}>
+            <Link href="/" className={classes(pathname, devices.mobile, routes.home)}>
               Home
             </Link>
             <Link
               href="/properties"
-              className={classes(pathname, devices.mobile, paths.properties)}>
+              className={classes(pathname, devices.mobile, routes.properties)}>
               Properties
             </Link>
             {isLogInOpen && (
               <Link
                 href="/properties/add"
-                className={classes(pathname, devices.mobile, paths.addProperty)}>
+                className={classes(pathname, devices.mobile, routes.addProperty)}>
                 Add Property
               </Link>
             )}
