@@ -1,6 +1,6 @@
 import Navbar from 'components/NavBar'
 import Footer from 'components/Footer'
-import '@/styles/global.css'
+import '@/src/styles/global.css'
 
 export const metadata = {
   title: 'Cozy Casa Property | Find The Perfect Home',
