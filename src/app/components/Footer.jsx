@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { images } from 'common/enums'
+import { images } from '../../common/enums'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()

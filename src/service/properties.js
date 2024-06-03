@@ -16,3 +16,20 @@ export const getProperties = async () => {
     return []
   }
 }
+
+export const getSingleProperty = async (id) => {
+  try {
+    if (!endpoints.api) return null
+
+    const res = await fetch(endpoints.properties.getProperty.url(id))
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch property')
+    }
+
+    return res.json()
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}

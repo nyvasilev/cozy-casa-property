@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import PropertyCard from 'components/PropertyCard'
+import PropertyCard from '../components/PropertyCard'
 import { getProperties } from '@/src/service'
 
 const HomeProperties = async () => {

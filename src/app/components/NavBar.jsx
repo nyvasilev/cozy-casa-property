@@ -4,8 +4,8 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaGoogle } from 'react-icons/fa'
-import { devices, images } from 'common/enums'
-import { routes } from 'common/routes'
+import { devices, images } from '../../common/enums'
+import { routes } from '../../common/routes'
 
 const navbarDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
 const navBarMobileClass = `${navbarDefaultClass} block text-base font-medium`
