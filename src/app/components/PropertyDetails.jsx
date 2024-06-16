@@ -61,7 +61,6 @@ const PropertyDetails = ({ property }) => {
             <span className="hidden sm:inline">Baths</span>
           </p>
           <p>
-            <i className="fa-solid fa-ruler-combined"></i>
             <FaRulerCombined className="inline-block mr-2" />
             {property.square_feet} <span className="hidden sm:inline">sqft</span>
           </p>

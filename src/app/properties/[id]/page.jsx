@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { FaArrowLeft } from 'react-icons/fa'
 import { getSingleProperty } from '@/src/service'
 import PropertyHeaderImage from '@/src/app/components/PropertyHeaderImage'
 import PropertyDetails from '@/src/app/components/PropertyDetails'
@@ -50,7 +51,7 @@ const PropertiesPage = () => {
             <Link
               href="/properties"
               className="text-blue-500 hover:text-blue-600 flex-items-center">
-              <i className="fas fa-arrow-left mr-2"></i> Back to properties
+              <FaArrowLeft className="inline mr-2" /> Back to properties
             </Link>
           </div>
         </section>
