@@ -1,11 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaGoogle } from 'react-icons/fa'
 import { devices, images } from '../../common/enums'
 import { routes } from '../../common/routes'
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const navbarDefaultClass = 'text-white hover:bg-gray-900 rounded-md px-3 py-2'
 const navBarMobileClass = `${navbarDefaultClass} block text-base font-medium`
@@ -28,10 +29,24 @@ const classes = (pathname, device, path) => {
 }
 
 const Navbar = () => {
+  const { data: session } = useSession()
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const [isLogInOpen, setIsLogInOpen] = useState(false)
+  const [providers, setProviders] = useState(false)
   const pathname = usePathname()
+
+  console.log('useSession', useSession())
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders()
+      console.log('res', res)
+      setProviders(res)
+    }
+
+    setAuthProviders()
+  }, [])
+
+  console.log('providers', providers)
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -88,7 +103,7 @@ const Navbar = () => {
                   className={classes(pathname, devices.desktop, routes.properties)}>
                   Properties
                 </Link>
-                {isLogInOpen && (
+                {session && (
                   <Link
                     href="/properties/add"
                     className={classes(pathname, devices.desktop, routes.addProperty)}>
@@ -100,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
-          {!isLogInOpen && (
+          {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
                 <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
@@ -210,14 +225,14 @@ const Navbar = () => {
               className={classes(pathname, devices.mobile, routes.properties)}>
               Properties
             </Link>
-            {isLogInOpen && (
+            {session && (
               <Link
                 href="/properties/add"
                 className={classes(pathname, devices.mobile, routes.addProperty)}>
                 Add Property
               </Link>
             )}
-            {isLogInOpen && (
+            {session && (
               <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
                 <span>Login or Register</span>
               </button>

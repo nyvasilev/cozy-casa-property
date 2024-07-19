@@ -1,4 +1,3 @@
-import { access } from 'fs'
 import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions = {
@@ -6,7 +5,7 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authOptions: {
+      authorization: {
         params: { prompt: 'consent', access_type: 'offline', response_type: 'code' },
       },
     }),
