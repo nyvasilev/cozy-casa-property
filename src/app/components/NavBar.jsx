@@ -39,14 +39,11 @@ const Navbar = () => {
   useEffect(() => {
     const setAuthProviders = async () => {
       const res = await getProviders()
-      console.log('res', res)
       setProviders(res)
     }
 
     setAuthProviders()
   }, [])
-
-  console.log('providers', providers)
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
