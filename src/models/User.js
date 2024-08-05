@@ -1,6 +1,4 @@
-import { time } from 'console'
 import { Schema, model, models } from 'mongoose'
-import { type } from 'os'
 
 const UserSchema = new Schema(
   {
