@@ -32,7 +32,6 @@ const Navbar = () => {
   const { data: session } = useSession()
   const profileImage = session?.user?.image
 
-  console.log('session', session)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [providers, setProviders] = useState(false)
