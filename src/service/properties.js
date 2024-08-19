@@ -30,6 +30,6 @@ export const getSingleProperty = async (id) => {
     return res.json()
   } catch (error) {
     console.log(error)
-    return null
+    return error
   }
 }

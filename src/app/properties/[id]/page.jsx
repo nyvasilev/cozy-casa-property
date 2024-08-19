@@ -17,8 +17,6 @@ const PropertiesPage = () => {
   const [property, setProperty] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  console.log('property', property)
-
   useEffect(() => {
     if (property === null) {
       fetchProperty(id)
