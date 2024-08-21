@@ -4,6 +4,7 @@ import Property from '@/src/models/Property'
 import { getSessionUser } from '@/src/service/getSessionUser'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import cloudinary from '@/config/cloudinary'
 
 const addProperty = async (formData) => {
   await connectDB()
@@ -15,10 +16,7 @@ const addProperty = async (formData) => {
   const { userId } = sessionUser
 
   const amenities = formData.getAll('amenities')
-  const images = formData
-    .getAll('images')
-    .filter((image) => image.name !== '')
-    .map((image) => image.name)
+  const images = formData.getAll('images').filter((image) => image.name !== '')
 
   const propertyData = {
     owner: userId,
@@ -45,8 +43,27 @@ const addProperty = async (formData) => {
       email: formData.get('seller_info.email'),
       phone: formData.get('seller_info.phone'),
     },
-    images,
   }
+
+  const imageUrls = []
+
+  for (const imageFile of images) {
+    const imageBuffer = await imageFile.arrayBuffer()
+    const imageArray = Array.from(new Uint8Array(imageBuffer))
+    const imageData = Buffer.from(imageArray)
+
+    // convert to base64;
+    const imageBase64 = imageData.toString('base64')
+
+    // make request to cloudinary
+    const result = await cloudinary.uploader.upload(`data:image/png;base64,${imageBase64}`, {
+      folder: 'cozy-casa-property',
+    })
+
+    imageUrls.push(result.secure_url)
+  }
+
+  propertyData.images = imageUrls
 
   const newProperty = new Property(propertyData)
   await newProperty.save()
