@@ -6,6 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 import { getSingleProperty } from '@/src/service'
 import PropertyHeaderImage from '@/src/app/components/PropertyHeaderImage'
 import PropertyDetails from '@/src/app/components/PropertyDetails'
+import PropertyImages from '@/src/app/components/PropertyImages'
 import PropertyContactForm from '@/src/app/components/PropertyContactForm'
 import BookmarkProperty from '@/src/app/components/BookmarkProperty'
 import ShareButtons from '@/src/app/components/ShareButtons'
@@ -68,6 +69,7 @@ const PropertiesPage = () => {
               </div>
             </div>
           </section>
+          <PropertyImages images={property.images} />
         </>
       )}
     </>
