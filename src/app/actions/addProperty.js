@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import cloudinary from '@/config/cloudinary'
 
-const addProperty = async (formData) => {
+export const addProperty = async (formData) => {
   await connectDB()
 
   const sessionUser = await getSessionUser()
@@ -71,5 +71,3 @@ const addProperty = async (formData) => {
   revalidatePath('/', 'layout')
   redirect(`/properties/${newProperty._id}`)
 }
-
-export default addProperty

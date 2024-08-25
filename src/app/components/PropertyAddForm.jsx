@@ -1,4 +1,4 @@
-import addProperty from '@/src/app/actions/addProperty'
+import { addProperty } from '@/src/app/actions'
 
 const PropertyAddForm = () => {
   return (
