@@ -1,6 +1,5 @@
 'use server'
 import cloudinary from '@/config/cloudinary'
-import connectDB from '@/config/database'
 import Property from '@/src/models/Property'
 import { getSessionUser } from '@/src/service/getSessionUser'
 import { revalidatePath } from 'next/cache'
