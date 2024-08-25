@@ -4,6 +4,7 @@ import Property from '@/src/models/Property'
 import { getSessionUser } from '@/src/service'
 import profileDefault from '@/public/images/profile.png'
 import ProfileProperties from '@/src/app/components/ProfileProperties'
+import { convertToSerializableObject } from '@/src/utils'
 
 const ProfilePage = async () => {
   await connectDB()
@@ -15,8 +16,10 @@ const ProfilePage = async () => {
     throw new Error('Id is required')
   }
 
-  const properties = await Property.find({ owner: userId }).lean()
-  console.log('object', properties)
+  const propertiesDoc = await Property.find({ owner: userId }).lean()
+  const properties = propertiesDoc.map(convertToSerializableObject)
+
+  if (!properties) <h1 className="text-center text-2 xl font-bold mt-10">Property Not Found</h1>
 
   return (
     <section className="bg-blue-50">
