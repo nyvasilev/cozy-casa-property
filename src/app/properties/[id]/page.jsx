@@ -61,11 +61,12 @@ const PropertiesPage = () => {
             <div className="container m-auto py-10 px-6">
               <div className="grid grid-cols-1 md:grid-cols-70/30 gap-6">
                 <PropertyDetails property={property} />
-                <div>
-                  <BookmarkProperty />
-                  <ShareButtons />
-                  <PropertyContactForm />
-                </div>
+                <aside className="space-y-4">
+                  <BookmarkProperty property={property} />
+                  <ShareButtons property={property} />
+                  <PropertyContactForm property={property} />
+                </aside>
+                <div></div>
               </div>
             </div>
           </section>
