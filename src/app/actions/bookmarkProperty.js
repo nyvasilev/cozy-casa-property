@@ -4,7 +4,7 @@ import User from '@/src/models/User'
 import { getSessionUser } from '@/src/service/getSessionUser'
 import { revalidatePath } from 'next/cache'
 
-export const bookmarkProperty = async (req, res) => {
+export const bookmarkProperty = async (propertyId) => {
   await connectDB()
 
   const sessionUser = await getSessionUser()
@@ -17,7 +17,7 @@ export const bookmarkProperty = async (req, res) => {
 
   const user = await User.findById(userId)
 
-  const isBookmarked = user.bookmark.includes(propertyId)
+  let isBookmarked = user.bookmarks.includes(propertyId)
 
   let message
 
