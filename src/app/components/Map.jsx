@@ -25,8 +25,6 @@ const ResultMap = (props) => {
     }
   }, [props])
 
-  console.log('props', props)
-
   return (
     <MapContainer ref={mapRef} center={position} zoom={2} className="h-96">
       <TileLayer

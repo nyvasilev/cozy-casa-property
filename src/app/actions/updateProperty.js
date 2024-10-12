@@ -30,7 +30,7 @@ export const updateProperty = async (propertyId, formData) => {
       street: formData.get('location.street'),
       city: formData.get('location.city'),
       state: formData.get('location.state'),
-      zipCode: formData.get('location.zipCode'),
+      zipcode: formData.get('location.zipcode'),
     },
     beds: formData.get('beds'),
     baths: formData.get('baths'),

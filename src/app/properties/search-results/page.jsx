@@ -18,7 +18,7 @@ const SearchResultsPage = async ({ searchParams: { location, propertyType } }) =
       { 'location.street': locationPattern },
       { 'location.city': locationPattern },
       { 'location.state': locationPattern },
-      { 'location.zipCode': locationPattern },
+      { 'location.zipcode': locationPattern },
     ],
   }
 
