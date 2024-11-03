@@ -3,7 +3,7 @@ import connectDB from '@/config/database'
 import Message from '@/src/models/Message'
 import { getSessionUser } from '@/src/service/getSessionUser'
 
-export const ddMessage = async (formData) => {
+export const addMessage = async (prevState, formData) => {
   await connectDB()
 
   const sessionUser = await getSessionUser()
@@ -14,7 +14,7 @@ export const ddMessage = async (formData) => {
 
   const recepient = formData.get('recepient')
 
-  if (userId === recipient) {
+  if (userId === recipeint) {
     return { error: 'You can not send a message to yourself' }
   }
 
